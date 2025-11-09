@@ -103,6 +103,7 @@ class BaseBuild {
     let library: Library
     let directoryURL: URL
     let xcframeworkDirectoryURL: URL
+    var pullLatestVersion = false;
     init(library: Library) {
         self.library = library
         directoryURL = URL.currentDirectory + "\(library.rawValue)-\(library.version)"
@@ -115,7 +116,11 @@ class BaseBuild {
         }
 
         // pull code from git
-        try! Utility.launch(path: "/usr/bin/git", arguments: ["-c", "advice.detachedHead=false", "clone", "--depth", "1", "--branch", library.version, library.url, directoryURL.path])
+        if pullLatestVersion {
+            try! Utility.launch(path: "/usr/bin/git", arguments: ["-c", "advice.detachedHead=false", "clone", "--recursive", "--depth", "1", library.url, directoryURL.path])
+        } else {
+            try! Utility.launch(path: "/usr/bin/git", arguments: ["-c", "advice.detachedHead=false", "clone", "--recursive", "--depth", "1", "--branch", library.version, library.url, directoryURL.path])
+        }
 
         // apply patch
         let patch = URL.currentDirectory + "../Sources/BuildScripts/patch/\(library.rawValue)"
@@ -220,8 +225,11 @@ class BaseBuild {
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DCMAKE_OSX_SYSROOT=\(platform.sdk.lowercased())",
                 "-DCMAKE_OSX_ARCHITECTURES=\(arch.rawValue)",
+                "-DCMAKE_SYSTEM_NAME=\(platform.cmakeSystemName)",
+                "-DCMAKE_SYSTEM_PROCESSOR=\(arch.rawValue)",
                 "-DCMAKE_INSTALL_PREFIX=\(thinDirPath)",
                 "-DBUILD_SHARED_LIBS=0",
+                "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
             ]
             arguments.append(contentsOf: self.arguments(platform: platform, arch: arch))
             try Utility.launch(path: cmake, arguments: arguments, currentDirectoryURL: buildURL, environment: environ)
@@ -950,6 +958,19 @@ enum PlatformType: String, CaseIterable {
             return "xros-simulator"
         default:
             return rawValue
+        }
+    }
+
+    var cmakeSystemName: String {
+        switch self {
+        case .ios, .isimulator:
+            return "iOS"
+        case .tvos, .tvsimulator:
+            return "tvOS"
+        case .macos, .maccatalyst:
+            return "Darwin"
+        case .xros, .xrsimulator:
+            return "visionOS"
         }
     }
 
