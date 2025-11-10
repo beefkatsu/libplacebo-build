@@ -122,6 +122,11 @@ private class BuildPlacebo: BaseBuild {
 
         // pull all submodules
         Utility.shell("git submodule update --init --recursive", currentDirectoryURL: directoryURL)
+  
+        // install jinja2 for distutils dependency
+        if Utility.shell("python -m pip list|grep jinja2") == nil {
+            Utility.shell("python -m pip install jinja2")
+        }
     }
 
 
