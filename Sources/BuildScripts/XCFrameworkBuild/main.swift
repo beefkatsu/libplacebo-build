@@ -22,15 +22,15 @@ enum Library: String, CaseIterable {
     var version: String {
         switch self {
         case .lcms2:
-            return "lcms2.16"
+            return "2.16.0"
         case .libdovi:
             return "3.3.0"
         case .vulkan:
-            return "1.2.9"
+            return "1.4.0"
         case .libshaderc:  // compiling GLSL (OpenGL Shading Language) shaders into SPIR-V (Standard Portable Intermediate Representation - Vulkan) code
-            return "2024.1.0"
+            return "2025.4.0"
         case .spirvcross:  // parsing and converting SPIR-V to other shader languages.
-            return "vulkan-sdk-1.3.268.0"
+            return "vulkan-sdk-1.4.309.0"
         case .libplacebo:
             return "v7.351.0"
         }
@@ -39,7 +39,7 @@ enum Library: String, CaseIterable {
     var url: String {
         switch self {
         case .lcms2:
-            return "https://github.com/mm2/Little-CMS"
+            return "https://github.com/mpvkit/lcms2-build/releases/download/\(self.version)/lcms2-all.zip"
         case .libdovi:
             return "https://github.com/mpvkit/libdovi-build/releases/download/\(self.version)/libdovi-all.zip"
         case .vulkan:
@@ -61,8 +61,8 @@ enum Library: String, CaseIterable {
             return  [
                 .target(
                     name: "lcms2",
-                    url: "https://github.com/mpvkit/libplacebo-build/releases/download/\(BaseBuild.options.releaseVersion)/lcms2.xcframework.zip",
-                    checksum: "https://github.com/mpvkit/libplacebo-build/releases/download/\(BaseBuild.options.releaseVersion)/lcms2.xcframework.checksum.txt"
+                    url: "https://github.com/mpvkit/lcms2-build/releases/download/\(self.version)/lcms2.xcframework.zip",
+                    checksum: "https://github.com/mpvkit/lcms2-build/releases/download/\(self.version)/lcms2.xcframework.checksum.txt"
                 ),
             ]
         case .libdovi:
@@ -209,7 +209,7 @@ private class BuildSpirvCross: BaseBuild {
 }
 
 
-private class BuildLittleCms: BaseBuild {
+private class BuildLittleCms: ZipBaseBuild {
     init() {
         super.init(library: .lcms2)
     }
