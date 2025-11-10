@@ -23,8 +23,8 @@ let package = Package(
 
         .binaryTarget(
             name: "lcms2",
-            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.351.0/lcms2.xcframework.zip",
-            checksum: "1514340a15096089c1485a82c1a3be012161a90f3bf75225b941c78d1a5aef69"
+            url: "https://github.com/mpvkit/lcms2-build/releases/download/2.16.0/lcms2.xcframework.zip",
+            checksum: "077eec06ddbb8b482539290d5a211eb45e234d37c1de4f0476f505eb85b3032b"
         ),
 
         .binaryTarget(
@@ -35,20 +35,20 @@ let package = Package(
 
         .binaryTarget(
             name: "Libshaderc_combined",
-            url: "https://github.com/mpvkit/libshaderc-build/releases/download/2024.1.0/Libshaderc_combined.xcframework.zip",
-            checksum: "2a9d485336d64ac36d148c3ebc1194e980b36e6e8a419f03ed4e4b5bca7e2a9c"
+            url: "https://github.com/mpvkit/libshaderc-build/releases/download/2025.4.0/Libshaderc_combined.xcframework.zip",
+            checksum: "faa469e7318d913909858483e005283b792cb3cf7610efdf2e7afc4fbfa23eb4"
         ),
 
         .binaryTarget(
             name: "MoltenVK",
-            url: "https://github.com/mpvkit/moltenvk-build/releases/download/1.2.9/MoltenVK.xcframework.zip",
-            checksum: "02dd7f51814855b7db9eacd883042b3e9481eb658de6bc63290af80149f2b94f"
+            url: "https://github.com/mpvkit/moltenvk-build/releases/download/1.4.0/MoltenVK.xcframework.zip",
+            checksum: "81aa59540c563e17558238e9475166a4b29c4119878e216d2de42ca9315bcc40"
         ),
 
         .binaryTarget(
             name: "Libplacebo",
-            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.351.0/Libplacebo.xcframework.zip",
-            checksum: "bc98003b34ea60eaba93d0942093d31251735330d7c85b2f6b3181d63e4d3f4e"
+            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.351.0-fix/Libplacebo.xcframework.zip",
+            checksum: "9938d8d8c13ead77e316221b417f7d623187091eace854852237bd2776124c30"
         ),
         //AUTO_GENERATE_TARGETS_END//
     ]
