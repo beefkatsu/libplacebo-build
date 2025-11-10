@@ -23,8 +23,8 @@ let package = Package(
 
         .binaryTarget(
             name: "lcms2",
-            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.349.0/lcms2.xcframework.zip",
-            checksum: "bd2c27366f8b7adfe7bf652a922599891c55b82f5c519bcc4eece1ccff57c889"
+            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.351.0/lcms2.xcframework.zip",
+            checksum: "1514340a15096089c1485a82c1a3be012161a90f3bf75225b941c78d1a5aef69"
         ),
 
         .binaryTarget(
@@ -36,7 +36,7 @@ let package = Package(
         .binaryTarget(
             name: "Libshaderc_combined",
             url: "https://github.com/mpvkit/libshaderc-build/releases/download/2024.1.0/Libshaderc_combined.xcframework.zip",
-            checksum: "f6267f62881e9496608069266ba52b025bcfcd6ec5859d02d780feeabfacc947"
+            checksum: "2a9d485336d64ac36d148c3ebc1194e980b36e6e8a419f03ed4e4b5bca7e2a9c"
         ),
 
         .binaryTarget(
@@ -47,8 +47,8 @@ let package = Package(
 
         .binaryTarget(
             name: "Libplacebo",
-            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.349.0/Libplacebo.xcframework.zip",
-            checksum: "f32d20351289a080cd7288742747cd927553fde8c217f63263b838083d07a01a"
+            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.351.0/Libplacebo.xcframework.zip",
+            checksum: "bc98003b34ea60eaba93d0942093d31251735330d7c85b2f6b3181d63e4d3f4e"
         ),
         //AUTO_GENERATE_TARGETS_END//
     ]
