@@ -41,14 +41,14 @@ let package = Package(
 
         .binaryTarget(
             name: "MoltenVK",
-            url: "https://github.com/mpvkit/moltenvk-build/releases/download/1.4.0/MoltenVK.xcframework.zip",
-            checksum: "81aa59540c563e17558238e9475166a4b29c4119878e216d2de42ca9315bcc40"
+            url: "https://github.com/mpvkit/moltenvk-build/releases/download/1.4.0-fix/MoltenVK.xcframework.zip",
+            checksum: "5b8ee52b7293cf9744aff17c19a07de7046cd97124ac05cdee76bc35538e0217"
         ),
 
         .binaryTarget(
             name: "Libplacebo",
             url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.351.0-fix/Libplacebo.xcframework.zip",
-            checksum: "9938d8d8c13ead77e316221b417f7d623187091eace854852237bd2776124c30"
+            checksum: "99ca0b86e2a5a99c445d3e41df6f2fc08294e1a004b03f6a5645f299f06bf378"
         ),
         //AUTO_GENERATE_TARGETS_END//
     ]
