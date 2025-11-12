@@ -24,7 +24,7 @@ enum Library: String, CaseIterable {
         case .lcms2:
             return "2.16.0-xcode26"
         case .libdovi:
-            return "3.3.0-xcode26"
+            return "3.3.1-xcode26"
         case .vulkan:
             return "1.4.0-xcode26"
         case .libshaderc:  // compiling GLSL (OpenGL Shading Language) shaders into SPIR-V (Standard Portable Intermediate Representation - Vulkan) code
