@@ -22,13 +22,13 @@ enum Library: String, CaseIterable {
     var version: String {
         switch self {
         case .lcms2:
-            return "2.16.0-xcode26"
+            return "2.16.0-xcode"
         case .libdovi:
-            return "3.3.1-xcode26"
+            return "3.3.1-xcode"
         case .vulkan:
-            return "1.4.0-xcode26"
+            return "1.4.0-xcode"
         case .libshaderc:  // compiling GLSL (OpenGL Shading Language) shaders into SPIR-V (Standard Portable Intermediate Representation - Vulkan) code
-            return "2025.4.0-xcode26"
+            return "2025.4.0-xcode"
         case .spirvcross:  // parsing and converting SPIR-V to other shader languages.
             return "vulkan-sdk-1.4.309.0"
         case .libplacebo:
