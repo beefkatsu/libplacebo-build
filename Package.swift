@@ -23,32 +23,32 @@ let package = Package(
 
         .binaryTarget(
             name: "lcms2",
-            url: "https://github.com/mpvkit/lcms2-build/releases/download/2.16.0-xcode26/lcms2.xcframework.zip",
-            checksum: "68faa94ee8f1d58af4c02922a4845f8ac6aaf77f33034f3b4a6a26ecfff14242"
+            url: "https://github.com/mpvkit/lcms2-build/releases/download/2.16.0-xcode/lcms2.xcframework.zip",
+            checksum: "9a08673dce386b0f75f6505ccb58df1f17421bffe035a6aebd4ab532fdc77274"
         ),
 
         .binaryTarget(
             name: "Libdovi",
-            url: "https://github.com/mpvkit/libdovi-build/releases/download/3.3.1-xcode26/Libdovi.xcframework.zip",
-            checksum: "8c2816cff25cc5e4b0330d4017b27375784b4096ca05aeaad8e7f513dbef9c18"
+            url: "https://github.com/mpvkit/libdovi-build/releases/download/3.3.1-xcode/Libdovi.xcframework.zip",
+            checksum: "20021f2644da6986ae4ee456d8f917774f7c1324532843ff795ac3034ee7c88e"
         ),
 
         .binaryTarget(
             name: "Libshaderc_combined",
-            url: "https://github.com/mpvkit/libshaderc-build/releases/download/2025.4.0-xcode26/Libshaderc_combined.xcframework.zip",
-            checksum: "f5d8d4c5f031263c088cb2e51658c147194fab9361b810157d178b2b6424fad3"
+            url: "https://github.com/mpvkit/libshaderc-build/releases/download/2025.4.0-xcode/Libshaderc_combined.xcframework.zip",
+            checksum: "dad5fe829dde498f41680f37adebac993fd7c04751042be2d79895eea5b24fb5"
         ),
 
         .binaryTarget(
             name: "MoltenVK",
-            url: "https://github.com/mpvkit/moltenvk-build/releases/download/1.4.0-xcode26/MoltenVK.xcframework.zip",
-            checksum: "dcf107451681cf66d7af3ac41b15fd260c36e7849977cc885a468ad7b366d8c1"
+            url: "https://github.com/mpvkit/moltenvk-build/releases/download/1.4.0-xcode/MoltenVK.xcframework.zip",
+            checksum: "37cfd1af378058883f5c961966477cd6accf9923f0e48e0dfa2cf42a95b797fc"
         ),
 
         .binaryTarget(
             name: "Libplacebo",
-            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.351.0-xcode26/Libplacebo.xcframework.zip",
-            checksum: "2ef0833cda1a1b24360eb389429ef99b9bee48bc1cb13d871f937e6c0963fa9c"
+            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.351.0-xcode/Libplacebo.xcframework.zip",
+            checksum: "75ec29cf670b4319509065f6c3b6acd99a220be372ac849b428e8bcba377b3f5"
         ),
         //AUTO_GENERATE_TARGETS_END//
     ]
