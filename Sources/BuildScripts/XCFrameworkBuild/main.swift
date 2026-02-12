@@ -233,7 +233,7 @@ private class BuildVulkan: ZipBaseBuild {
         try? FileManager.default.removeItem(at: URL.currentDirectory + library.rawValue)
         try? FileManager.default.removeItem(at: directoryURL.appendingPathExtension("log"))
         try? FileManager.default.createDirectory(atPath: (URL.currentDirectory + library.rawValue).path, withIntermediateDirectories: true, attributes: nil)
-        for platform in BaseBuild.platforms {
+        for platform in platforms() {
             for arch in architectures(platform) {
                 // restore lib
                 let srcThinLibPath = directoryURL + ["lib", "MoltenVK.xcframework", platform.frameworkName]
