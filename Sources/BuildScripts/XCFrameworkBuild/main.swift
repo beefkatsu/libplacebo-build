@@ -1,24 +1,24 @@
 import Foundation
-import Darwin
+import BuildShared
 
 do {
-    let options = try ArgumentOptions.parse(CommandLine.arguments)
-    try Build.performCommand(options)
+    let options = try BuildRunner.performCommand()
 
-    try BuildLittleCms().buildALL()
-    try BuildDovi().buildALL()
-    try BuildShaderc().buildALL()
-    try BuildVulkan().buildALL()
-    try BuildSpirvCross().buildALL()
-    try BuildPlacebo().buildALL()
+    try BuildLittleCms(options: options).buildALL()
+    try BuildDovi(options: options).buildALL()
+    try BuildShaderc(options: options).buildALL()
+    try BuildVulkan(options: options).buildALL()
+    try BuildSpirvCross(options: options).buildALL()
+    try BuildPlacebo(options: options).buildALL()
 } catch {
     print(error.localizedDescription)
     exit(1)
 }
 
 
-enum Library: String, CaseIterable {
+enum Library: String, CaseIterable, BuildLibrary {
     case libshaderc, vulkan, lcms2, libdovi, spirvcross, libplacebo
+    
     var version: String {
         switch self {
         case .lcms2:
@@ -53,12 +53,10 @@ enum Library: String, CaseIterable {
         }
     }
 
-
-    // for generate Package.swift
-    var targets : [PackageTarget] {
+    var targets: [PackageTarget] {
         switch self {
         case .lcms2:
-            return  [
+            return [
                 .target(
                     name: "lcms2",
                     url: "https://github.com/mpvkit/lcms2-build/releases/download/\(self.version)/lcms2.xcframework.zip",
@@ -66,7 +64,7 @@ enum Library: String, CaseIterable {
                 ),
             ]
         case .libdovi:
-            return  [
+            return [
                 .target(
                     name: "Libdovi",
                     url: "https://github.com/mpvkit/libdovi-build/releases/download/\(self.version)/Libdovi.xcframework.zip",
@@ -74,7 +72,7 @@ enum Library: String, CaseIterable {
                 ),
             ]
         case .vulkan:
-            return  [
+            return [
                 .target(
                     name: "MoltenVK",
                     url: "https://github.com/mpvkit/moltenvk-build/releases/download/\(self.version)/MoltenVK.xcframework.zip",
@@ -82,7 +80,7 @@ enum Library: String, CaseIterable {
                 ),
             ]
         case .libshaderc:
-            return  [
+            return [
                 .target(
                     name: "Libshaderc_combined",
                     url: "https://github.com/mpvkit/libshaderc-build/releases/download/\(self.version)/Libshaderc_combined.xcframework.zip",
@@ -90,11 +88,11 @@ enum Library: String, CaseIterable {
                 ),
             ]
         case .libplacebo:
-            return  [
+            return [
                 .target(
                     name: "Libplacebo",
-                    url: "https://github.com/mpvkit/libplacebo-build/releases/download/\(BaseBuild.options.releaseVersion)/Libplacebo.xcframework.zip",
-                    checksum: "https://github.com/mpvkit/libplacebo-build/releases/download/\(BaseBuild.options.releaseVersion)/Libplacebo.xcframework.checksum.txt"
+                    url: "https://github.com/mpvkit/libplacebo-build/releases/download/\(BuildRunner.options!.releaseVersion)/Libplacebo.xcframework.zip",
+                    checksum: "https://github.com/mpvkit/libplacebo-build/releases/download/\(BuildRunner.options!.releaseVersion)/Libplacebo.xcframework.checksum.txt"
                 ),
             ]
         default:
@@ -104,11 +102,9 @@ enum Library: String, CaseIterable {
 }
 
 
-
 private class BuildPlacebo: BaseBuild {
-    init() {
-        super.init(library: .libplacebo)
-
+    init(options: ArgumentOptions) {
+        super.init(library: Library.libplacebo, options: options)
     }
 
     override func beforeBuild() throws {
@@ -154,17 +150,16 @@ private class BuildPlacebo: BaseBuild {
         return args
     }
 
-    override func flagsDependencelibrarys() -> [Library] {
-        [.libdovi]
+    override func flagsDependencelibrarys() -> [any BuildLibrary] {
+        [Library.libdovi]
     }
 }
 
 
 private class BuildSpirvCross: BaseBuild {
-    init() {
-        super.init(library: .spirvcross)
+    init(options: ArgumentOptions) {
+        super.init(library: Library.spirvcross, options: options)
     }
-
 
     override func build(platform: PlatformType, arch: ArchType) throws {
         try super.build(platform: platform, arch: arch)
@@ -191,7 +186,7 @@ private class BuildSpirvCross: BaseBuild {
         FileManager.default.createFile(atPath: pc.path, contents: content.data(using: .utf8), attributes: nil)
     }
 
-    override func arguments(platform _: PlatformType, arch _: ArchType) -> [String] {
+    override func arguments(platform: PlatformType, arch: ArchType) -> [String] {
         [
             "-DSPIRV_CROSS_SHARED=OFF",
             "-DSPIRV_CROSS_STATIC=ON", 
@@ -210,27 +205,27 @@ private class BuildSpirvCross: BaseBuild {
 
 
 private class BuildLittleCms: ZipBaseBuild {
-    init() {
-        super.init(library: .lcms2)
+    init(options: ArgumentOptions) {
+        super.init(library: Library.lcms2, options: options)
     }
 }
 
 private class BuildDovi: ZipBaseBuild {
-    init() throws {
-        super.init(library: .libdovi)
+    init(options: ArgumentOptions) throws {
+        super.init(library: Library.libdovi, options: options)
     }
 }
 
 private class BuildShaderc: ZipBaseBuild {
-    init() throws {
-        super.init(library: .libshaderc)
+    init(options: ArgumentOptions) throws {
+        super.init(library: Library.libshaderc, options: options)
     }
 }
 
 
 private class BuildVulkan: ZipBaseBuild {
-    init() {
-        super.init(library: .vulkan)
+    init(options: ArgumentOptions) {
+        super.init(library: Library.vulkan, options: options)
     }
 
     override func buildALL() throws {
