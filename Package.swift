@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "libplacebo",
-    platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13)],
+    platforms: [.macOS(.v11), .iOS(.v14), .tvOS(.v14)],
     products: [
         .library(
             name: "Libplacebo", 
@@ -47,8 +47,8 @@ let package = Package(
 
         .binaryTarget(
             name: "Libplacebo",
-            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.351.0-2512/Libplacebo.xcframework.zip",
-            checksum: "3b2bd57b82549566963effadf0891a141448d9f89c7d48fca0b8f823b854bac6"
+            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.360.0/Libplacebo.xcframework.zip",
+            checksum: "672e128aad787cdf6a325a622eac9380f86d0db4d33d62ce8c82b1239da4fdb8"
         ),
         //AUTO_GENERATE_TARGETS_END//
     ]
