@@ -13,6 +13,6 @@ jobs:
       repository: 'haasn/libplacebo'
       library: 'libplacebo'
       pr_body: |
-        https://github.com/haasn/libplacebo/blob/${{ env.LATEST_VERSION }}/RELEASING.md
+        {REPOSITORY_URL}/blob/{LATEST_VERSION}/RELEASING.md
 
-        https://github.com/haasn/libplacebo/compare/${{ env.OLD_VERSION }}...${{ env.LATEST_VERSION }}
+        {REPOSITORY_URL}/compare/{OLD_VERSION}...{LATEST_VERSION}
