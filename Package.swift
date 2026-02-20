@@ -47,8 +47,8 @@ let package = Package(
 
         .binaryTarget(
             name: "Libplacebo",
-            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.360.0-edr1/Libplacebo.xcframework.zip",
-            checksum: "8224dcce18e27e014db996a7b718a331b9137e0d01abbf30e6cde6e06664bbb6"
+            url: "https://github.com/mpvkit/libplacebo-build/releases/download/7.360.0-edr2/Libplacebo.xcframework.zip",
+            checksum: "d508f0d5cbe724d6e2410e0821731dd56bd72e5ed31d46417f7e612a50bd0cbe"
         ),
         //AUTO_GENERATE_TARGETS_END//
     ]
