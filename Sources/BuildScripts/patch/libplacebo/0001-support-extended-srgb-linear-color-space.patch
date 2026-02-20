@@ -1,20 +1,23 @@
 diff --git a/src/vulkan/swapchain.c b/src/vulkan/swapchain.c
-index 84c007b..02ee723 100644
+index 84c007b..7816976 100644
 --- a/src/vulkan/swapchain.c
 +++ b/src/vulkan/swapchain.c
-@@ -100,6 +100,11 @@ static bool map_color_space(VkColorSpaceKHR space, struct pl_color_space *out)
+@@ -100,6 +100,14 @@ static bool map_color_space(VkColorSpaceKHR space, struct pl_color_space *out)
          };
          return true;
      case VK_COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT:
 +        *out = (struct pl_color_space) {
 +            .primaries = PL_COLOR_PRIM_BT_709,
 +            .transfer  = PL_COLOR_TRC_LINEAR,
++            .hdr = {
++                .max_luma = 10000,
++            },
 +        };
 +        return true;
      case VK_COLOR_SPACE_EXTENDED_SRGB_NONLINEAR_EXT:
          // TODO
          return false;
-@@ -253,6 +258,17 @@ static bool pick_surf_format(pl_swapchain sw, const struct pl_color_space *hint)
+@@ -253,6 +261,17 @@ static bool pick_surf_format(pl_swapchain sw, const struct pl_color_space *hint)
                  default:
                      break;
              }
