@@ -1,5 +1,5 @@
 diff --git a/src/vulkan/swapchain.c b/src/vulkan/swapchain.c
-index 84c007b..e9903c3 100644
+index 84c007b..02ee723 100644
 --- a/src/vulkan/swapchain.c
 +++ b/src/vulkan/swapchain.c
 @@ -100,6 +100,11 @@ static bool map_color_space(VkColorSpaceKHR space, struct pl_color_space *out)
@@ -14,3 +14,21 @@ index 84c007b..e9903c3 100644
      case VK_COLOR_SPACE_EXTENDED_SRGB_NONLINEAR_EXT:
          // TODO
          return false;
+@@ -253,6 +258,17 @@ static bool pick_surf_format(pl_swapchain sw, const struct pl_color_space *hint)
+                 default:
+                     break;
+             }
++            // On Apple via MoltenVK, EXTENDED_SRGB_LINEAR + RGBA16Float is
++            // the correct EDR (Extended Dynamic Range) path for HDR content.
++            // MoltenVK maps this to extendedLinearSRGB + wantsEDR, which
++            // enables pixel values > 1.0 to drive peak brightness. Prefer
++            // this over PQ/ST2084 which produces dimmed output on macOS.
++            if (prefer_hdr &&
++                p->formats.elem[i].colorSpace == VK_COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT &&
++                p->formats.elem[i].format == VK_FORMAT_R16G16B16A16_SFLOAT)
++            {
++                score += 50000;
++            }
+ #else
+             // On other platforms, it doesn't matter in theory but some drivers
+             // or hardware may have limited support for BGR formats, so prefer
