@@ -10,7 +10,7 @@ index 84c007b..7816976 100644
 +            .primaries = PL_COLOR_PRIM_BT_709,
 +            .transfer  = PL_COLOR_TRC_LINEAR,
 +            .hdr = {
-+                .max_luma = 10000,
++                .max_luma = PL_COLOR_SDR_WHITE,
 +            },
 +        };
 +        return true;
